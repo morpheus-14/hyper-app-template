@@ -59,7 +59,7 @@ view push state =
 		, gravity CENTER_HORIZONTAL
 		] 
 		[ (mapDom TitleBar.view push {} BackPressed [ text_c "Animation Playground" ])
-		, (demo4 push)
+		, (demo2)
 		-- , (mapDom (ListView.view Nothing) push state.usernameState AnimChanged [Tuple "layout" "radio"])
 		]
 	-- , linearLayout
@@ -170,8 +170,8 @@ ball size pad color ind =
 		[ width $ V size
 		, height $ V size
 		, background color
-		, borderRadius "12"
-		-- , cornerRadius $ toNumber (size * 2)
+		-- , borderRadius "12"
+		, cornerRadius $ toNumber (size * 2)
 		, margin $ Margin pad 100 pad 0
 		, animation (writeJSON
 			[ fromFoldable
@@ -205,44 +205,44 @@ demo2 =
 		] ((ball 24 8 "#993300") <$> reverse (1..6))
 	]
 
-demo3 :: forall e. PrestoDOM Action e
-demo3 =
-	relativeLayout
-		[ width MATCH_PARENT
-		, height $ V 0
-		, weight "1"
-		, gravity CENTER_HORIZONTAL
-		]
-		[ linearLayout
-			[ width $ V 310
-			, height $ V 310
-			, margin $ MarginTop 50
-			]
-			[ arc
-				[ cx $ V 155
-				, cy $ V 155
-				, radius $ V 150
-				, style "STROKE"
-				, hex "#3300FF"
-				, startAngle (-90.0)
-				, sweepAngle 0.0
-				, animation (writeJSON
-					[ fromFoldable
-						[ Tuple "id" "samit"
-						, Tuple "duration" "1000"
-						, Tuple "delay" "300"
-						, Tuple "easing" "linear"
-						, Tuple "startImmediate" "true"
-						, Tuple "repeatCount" "-1"
-						, Tuple "fillMode" "forwards"
-						, Tuple "props" (writeJSON
-							[ { "prop": "sweepAngle" , "from": "0", "to": "360" } ]
-							)
-						]
-					])
-				]
-			]
-		]
+-- demo3 :: forall e. PrestoDOM Action e
+-- demo3 =
+-- 	relativeLayout
+-- 		[ width MATCH_PARENT
+-- 		, height $ V 0
+-- 		, weight "1"
+-- 		, gravity CENTER_HORIZONTAL
+-- 		]
+-- 		[ linearLayout
+-- 			[ width $ V 310
+-- 			, height $ V 310
+-- 			, margin $ MarginTop 50
+-- 			]
+-- 			[ arc
+-- 				[ cx $ V 155
+-- 				, cy $ V 155
+-- 				, radius $ V 150
+-- 				, style "STROKE"
+-- 				, hex "#3300FF"
+-- 				, startAngle (-90.0)
+-- 				, sweepAngle 0.0
+-- 				, animation (writeJSON
+-- 					[ fromFoldable
+-- 						[ Tuple "id" "samit"
+-- 						, Tuple "duration" "1000"
+-- 						, Tuple "delay" "300"
+-- 						, Tuple "easing" "linear"
+-- 						, Tuple "startImmediate" "true"
+-- 						, Tuple "repeatCount" "-1"
+-- 						, Tuple "fillMode" "forwards"
+-- 						, Tuple "props" (writeJSON
+-- 							[ { "prop": "sweepAngle" , "from": "0", "to": "360" } ]
+-- 							)
+-- 						]
+-- 					])
+-- 				]
+-- 			]
+-- 		]
 
 demo4 :: forall e eff. (Action -> Eff (frp :: FRP | eff) Unit) -> PrestoDOM Action e 
 demo4 push =
